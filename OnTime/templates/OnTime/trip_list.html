@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+
+{% block title %}Create Trip Module{% endblock %}
+
+{% block content %}
+
+  <p>
+    <a href="{% url 'trip_add' %}">Add Trip</a>
+  </p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Line</th>
+        <th>Starting Stop</th>
+        <th>Starting Time</th>
+        <!--<th>Ending Stop</th> -->
+        <th>Ending Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trip in trip %}
+        <tr>
+          <td><a href="{% url 'trip_change' trip.pk %}">{{ trip.line.name }}</a></td>
+          <td>{{ trip.starting_stop.name }}</td>
+          <td>{{ trip.starting_time.name }}</td>
+          <!--<td>{{ trip.ending_stop.name }}</td> -->
+          <td>{{trip.ending_time.name}}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No Trip in the database. <a href="{% url 'trip_add' %}">Add the first Trip</a>.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

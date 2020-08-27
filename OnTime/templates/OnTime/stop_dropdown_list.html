@@ -1,0 +1,6 @@
+
+<option value="">---------</option>
+{% for stop in stops %}
+<option value="{{ stop.pk }}">{{ stop.name }}</option>
+{% endfor %}
+
