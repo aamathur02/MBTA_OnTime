@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 #url routing here
+#another test
 urlpatterns = [
     path('', RedirectView.as_view(pattern_name='trip_changelist'), name='home'),
     path('trips/', include('OnTime.urls')),
