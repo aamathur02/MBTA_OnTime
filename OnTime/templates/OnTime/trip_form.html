@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
   <h2>Person Form</h2>
-  <form method="post" id = "tripForm" data-stops_url = "{% url 'ajax_load_stops' %}"novalidate>
+  <form method="post" id = "tripForm" data-stops-url = "{% url 'ajax_load_stops' %}"novalidate>
     {% csrf_token %}
     <table>
       {{ form.as_table }}

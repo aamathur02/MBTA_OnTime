@@ -35,7 +35,7 @@ class Trip(models.Model):
     line = models.ForeignKey(Line, on_delete=models.CASCADE)
     starting_stop = models.ForeignKey(Starting_Stop, on_delete=models.CASCADE)
     starting_time = models.TimeField()
-    #ending_stop = models.ForeignKey(Ending_Stop, on_delete=models.CASCADE)
+    ending_stop = models.ForeignKey(Ending_Stop, on_delete=models.CASCADE)
     ending_time = models.TimeField()
 
     def __str__(self):

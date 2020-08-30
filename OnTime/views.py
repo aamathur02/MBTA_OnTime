@@ -28,4 +28,4 @@ def load_stops(request):
     line_id = request.GET.get('line')
     starting_stops = Starting_Stop.objects.filter(line_id=line_id).order_by('name')
     print(starting_stops)
-    return render(request, 'OnTime/stop_dropdown_list.html', {'stops':starting_stops}) 
+    return render(request, 'OnTime/stop_dropdown_list.html', {'starting_stops':starting_stops}) 
