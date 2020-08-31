@@ -1,9 +1,9 @@
 from django import forms
-from .models import Trip,Starting_Stop, Ending_Stop
+from .models import TripInput,Starting_Stop, Ending_Stop
 
-class TripForm(forms.ModelForm):
+class TripInputForm(forms.ModelForm):
     class Meta:
-        model = Trip
+        model = TripInput
         fields = {'name', 'line', 'starting_stop', 'ending_stop', 'starting_time', 'ending_time'}
     
     def __init__(self, *args, **kwargs):

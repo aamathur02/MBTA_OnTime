@@ -30,7 +30,7 @@ class Ending_Stop(models.Model):
     
 
 #model to represent a basic trip on the MBTA
-class Trip(models.Model):
+class TripInput(models.Model):
     name = models.CharField(max_length=50, default='New Trip')
     line = models.ForeignKey(Line, on_delete=models.CASCADE)
     starting_stop = models.ForeignKey(Starting_Stop, on_delete=models.CASCADE)

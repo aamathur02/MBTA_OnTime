@@ -1,25 +1,25 @@
 from django.shortcuts import render
-from .models import Trip, Starting_Stop, Ending_Stop
+from .models import TripInput, Starting_Stop, Ending_Stop
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
-from .forms import TripForm
+from .forms import TripInputForm
 
 # Create your views here.
 class TripListView(ListView):
     print("ran load_stops")
-    model = Trip
+    model = TripInput
     context_object_name = 'trip'
 
 class TripCreateView(CreateView):
-    model = Trip
+    model = TripInput
     #fields = ('line', 'starting_stop', 'starting_time', 'ending_stop', 'ending_time')
-    form_class = TripForm
+    form_class = TripInputForm
     success_url = reverse_lazy('trip_changelist')
 
 class TripUpdateView(UpdateView):
-    model = Trip
+    model = TripInput
     #fields = ('line', 'starting_stop', 'starting_time', 'ending_stop', 'ending_time')
-    form_class  = TripForm
+    form_class  = TripInputForm
     success_url = reverse_lazy('trip_changelist')
 
 def load_starting_stops(request):
