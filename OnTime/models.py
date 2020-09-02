@@ -16,6 +16,7 @@ class Line(models.Model):
 class Starting_Stop(models.Model):
     name = models.CharField(max_length=150)
     line = models.ForeignKey(Line, on_delete=models.CASCADE)
+    index = models.IntegerField(default=2)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,7 @@ class Starting_Stop(models.Model):
 class Ending_Stop(models.Model):
     name = models.CharField(max_length=150)
     line = models.ForeignKey(Line, on_delete=models.CASCADE)
+    index = models.IntegerField(default=2)
 
 
     def __str__(self):
