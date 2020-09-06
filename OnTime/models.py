@@ -44,4 +44,11 @@ class TripInput(models.Model):
         return (f'from {starting_stop} to {ending_stop}')
 
 
+def get_Trip_Direction(Starting_Stop, Ending_Stop):
+    if (Starting_Stop.index > Ending_Stop.index):
+        return 1;
+    else:
+        return 0;
+
+
 

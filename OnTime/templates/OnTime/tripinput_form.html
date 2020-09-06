@@ -6,9 +6,12 @@
     <table>
       {{ form.as_table }}
     </table>
-    <button type="submit">Save</button>
+    <button type="submit" id = "submitButton" data-create-list = "{% url 'ajax-load-trips' %}">Save</button>
     <a href="{% url 'trip_changelist' %}">Nevermind</a>
   </form>
+
+  <span id = "trip_span">
+  </span>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
@@ -49,6 +52,32 @@
       }
     });
 
+  });
+</script>
+
+<script>src="https://code.jquery.com/jquery-3.3.1.min.js"</script>
+<script>
+  $("#submitButton").click(function() {
+    console.log("button click working");
+    var url = $("submitButton").attr("data-create-list");
+    var lineId = $("id_line").val();
+    var starting_stop = $("id_starting_stop").val();
+    var ending_stop = $("id_ending_stop").val();
+    var starting_time = $("id_starting_time").val();
+    console.log(lineId);
+
+    $.ajax ({
+      url: url,
+      data: {
+        'line': lineId,
+        'starting_stop': starting_stop,
+        'ending_stop': ending_stop,
+        'starting_time': starting_time,
+        },
+      success: function (data) {
+        $("#trip_span").html(data);
+      }
+    });
   });
 </script>
 {% endblock %}

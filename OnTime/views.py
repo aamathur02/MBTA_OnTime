@@ -38,8 +38,6 @@ def load_ending_stops(request):
     print(ending_stops)
     return render(request, 'OnTime/ending_stop_dropdown_list.html', {'ending_stops':ending_stops}) 
 
-#class TripResultView():
-    
-    #0 is outbound, 1 is inbound
-   #def create_trip_list(starting_stop, ending_stop, )
+class TripResultView():
+    pass
     
