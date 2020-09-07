@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import TripInput, Starting_Stop, Ending_Stop
+from .models import TripInput, Starting_Stop, Ending_Stop, get_Trip_Direction
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import TripInputForm
+from . import mbta_api
 
 # Create your views here.
 class TripListView(ListView):
@@ -38,6 +39,18 @@ def load_ending_stops(request):
     print(ending_stops)
     return render(request, 'OnTime/ending_stop_dropdown_list.html', {'ending_stops':ending_stops}) 
 
-class TripResultView():
-    pass
+def load_trips(request):
+    base_url = "https://api-v3.mbta.com"
+
+    line = request.GET.get("line")
+    starting_stop = request.GET.get("starting_stop")
+    ending_stop = request.GET.get("ending_stop")
+    starting_time = request.GET.get("starting_time")
+
+    print("ran load trips")
+
+    print(starting_stop)
+    #direction = get_Trip_Direction()
+
+    #trips = mbta_api.find_trips(base_url, )
     

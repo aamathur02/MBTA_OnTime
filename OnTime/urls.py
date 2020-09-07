@@ -9,5 +9,5 @@ urlpatterns = [
     path('ajax/load-starting_stops/', views.load_starting_stops, name='ajax_load_starting_stops'),  # <-- this one here
     path('ajax/load-ending_stops/', views.load_ending_stops, name='ajax_load_ending_stops'),
 
-    path('ajax/load-trips/', views.TripResultView, name = 'ajax-load-trips'),
+    path('ajax/load-trips/', views.load_ending_stops, name = 'ajax-load-trips'),
 ]

@@ -41,7 +41,7 @@ class TripInput(models.Model):
     ending_time = models.TimeField()
 
     def __str__(self):
-        return (f'from {starting_stop} to {ending_stop}')
+        return name
 
 
 def get_Trip_Direction(Starting_Stop, Ending_Stop):
