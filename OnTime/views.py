@@ -39,7 +39,7 @@ def load_ending_stops(request):
     print(ending_stops)
     return render(request, 'OnTime/ending_stop_dropdown_list.html', {'ending_stops':ending_stops}) 
 
-def load_trips(request):
+def load_trips(request, trip_id):
     base_url = "https://api-v3.mbta.com"
 
     line = request.GET.get("line")
