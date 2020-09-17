@@ -23,7 +23,7 @@ def create_lines_list(base_url):
 	line_response = make_API_Request(base_url, "routes", headers, params)
 	line_list = []
 	for i in range(len(line_response)):
-		line_list.append((line_response[i]['attributes']['long_name'], line_response[i]['id'], ))
+		line_list.append((line_response[i]['id'], (line_response[i]['attributes']['long_name'])))
 
 	return line_list
 
@@ -48,17 +48,14 @@ def create_stops_list(line_id, base_url):
 
 	return stop_list
 
-def find_travel_direction(stops, beginning, ending):
-
-	begin_index = stops.index(beginning)
-	end_index = stops.index(ending)
+def find_travel_direction(beginning, ending):
 
 	#print(f"Start Index: {begin_index}")
 	#print(f'End Index: {end_index}')
 
-	if begin_index == end_index:
+	if beginning == ending:
 		print("You have chosen the same stop to get on and off at:")
-	elif begin_index < end_index:
+	elif beginning < ending:
 		return 1
 	else:
 		return 0
@@ -77,6 +74,8 @@ def find_trips(base_url, direction_id, start_time, line_name, beginning_stop):
     ('filter[route]', line_name),
     ('filter[stop]', beginning_stop),
 	)
+
+	print(beginning_stop)
 
 	trip_response = make_API_Request(base_url, "schedules", headers, params)
 	trip_list = []

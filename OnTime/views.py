@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import TripInputForm
 from . import mbta_api
+from django.http import HttpResponse
 
 # Create your views here.
 class TripListView(ListView):
@@ -39,18 +40,22 @@ def load_ending_stops(request):
     print(ending_stops)
     return render(request, 'OnTime/ending_stop_dropdown_list.html', {'ending_stops':ending_stops}) 
 
-def load_trips(request, trip_id):
+def load_trips(request, pk):
     base_url = "https://api-v3.mbta.com"
 
-    line = request.GET.get("line")
-    starting_stop = request.GET.get("starting_stop")
-    ending_stop = request.GET.get("ending_stop")
-    starting_time = request.GET.get("starting_time")
+    current_input = TripInput.objects.get(pk = pk)
+    line = current_input.line
+    starting_stop_id = current_input.starting_stop.index
+    starting_stop = current_input.starting_stop.name
+    ending_stop_id = current_input.ending_stop.index
+    ending_stop = current_input.ending_stop.name
+    begin_time = current_input.starting_time
 
-    print("ran load trips")
+    travel_direction = mbta_api.find_travel_direction(starting_stop_id, ending_stop_id)
 
-    print(starting_stop)
-    #direction = get_Trip_Direction()
+    trips = mbta_api.find_trips(base_url, travel_direction, begin_time, 'CR-Franklin', starting_stop)
+    times = mbta_api.find_times(base_url, trips, starting_stop, ending_stop)
+    #return HttpResponse(mbta_api.create_lines_list("https://api-v3.mbta.com")
+    return HttpResponse((times))
 
-    #trips = mbta_api.find_trips(base_url, )
     
