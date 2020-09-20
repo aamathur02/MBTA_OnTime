@@ -1,15 +1,21 @@
 {% extends 'base.html'%}
 {% block content %}
-  <h2>Person Form</h2>
-  <form method="post" id = "tripForm" data-ending-stops-url = "{% url 'ajax_load_ending_stops' %}" data-starting-stops-url = "{% url 'ajax_load_starting_stops' %}"novalidate>
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <button type="submit" id = "submitButton">Save</button>
-    <a href="{% url 'trip_changelist' %}">Nevermind</a>
-  </form>
-
+<div style = "padding-top: 0px;;">
+  <div class = "jumbotron" style = "padding: 0px;">
+    <h2 class = "text-center" style= "font-size: 100px; padding-top: 0px;">Enter Trip Data</h2>
+  </div>
+</div>
+<div class = "text-center">
+      <h2>Enter Trip Data</h2>
+      <form style = "text-align: center; display: block;"post" id = "tripForm" data-ending-stops-url = "{% url 'ajax_load_ending_stops' %}" data-starting-stops-url = "{% url 'ajax_load_starting_stops' %}"novalidate>
+        {% csrf_token %}
+        <table style = "margin-left: auto; margin-right: auto;">
+          {{ form.as_table }}
+        </table>
+        <button type="submit" id = "submitButton">Save</button>
+        <a href="{% url 'trip_changelist' %}">Nevermind</a>
+      </form>
+</div>
   <span id = "trip_span">
   </span>
 
