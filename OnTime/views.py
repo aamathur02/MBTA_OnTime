@@ -16,13 +16,13 @@ class TripCreateView(CreateView):
     model = TripInput
     #fields = ('line', 'starting_stop', 'starting_time', 'ending_stop', 'ending_time')
     form_class = TripInputForm
-    success_url = reverse_lazy('trip_changelist')
+    success_url = reverse_lazy('trip-changelist')
 
 class TripUpdateView(UpdateView):
     model = TripInput
     #fields = ('line', 'starting_stop', 'starting_time', 'ending_stop', 'ending_time')
     form_class  = TripInputForm
-    success_url = reverse_lazy('trip_changelist')
+    success_url = reverse_lazy('trip-changelist')
 
 def load_starting_stops(request):
     print("ran starting stops")
@@ -56,6 +56,6 @@ def load_trips(request, pk):
     trips = mbta_api.find_trips(base_url, travel_direction, begin_time, 'CR-Franklin', starting_stop)
     times = mbta_api.find_times(base_url, trips, starting_stop, ending_stop)
     #return HttpResponse(mbta_api.create_lines_list("https://api-v3.mbta.com")
-    return HttpResponse((times))
+    return HttpResponse((trips))
 
     
